@@ -16,7 +16,7 @@ jobs:
         uses: ncipollo/release-action@v1
         with:
            artifacts: "all_cn_cidr.list"
-           bodyFile: "all_cn_cidr.list"
+           bodyFile: $GITHUB_WORKSPACE
            token: ${{ secrets.GITHUB_TOKEN }}
 
 
