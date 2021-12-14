@@ -12,14 +12,22 @@ jobs:
         run: |
           curl https://ispip.clang.cn/all_cn_cidr.txt | perl -ne '/^(\d{1,3}(\.\d{1,3}){3}\/\d{1,2})/ && print "IP-CIDR,$1\n"' > all_cn_cidr.list
           sed -i 's/$/&,no-resolve/g' all_cn_cidr.list
-      - name: release
-        uses: softprops/action-gh-release@v1
-        if: startsWith(github.ref, 'refs/tags/')
+      - name: 读取描述文件
+        id: description
+        uses: juliangruber/read-file-action@v1
         with:
-          body: TODO New Release.
+          path: ./all_cn_cidr.list
+      - name: 9. 创建GitHub Release
+        id: create_release
+        uses: actions/create-release@latest
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ha
+          release_name: ha
+          body: ${{steps.description.outputs.content}}
           draft: false
           prerelease: false
-          files: all_cn_cidr.list
 
 
 
