@@ -26,6 +26,7 @@ jobs:
           tag_name: ha
           release_name: ha
           body: ./all_cn_cidr.list
+          bodyFile: $GITHUB_WORKSPACE/all_cn_cidr.list
           draft: false
           prerelease: false
 
