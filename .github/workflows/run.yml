@@ -25,7 +25,7 @@ jobs:
         with:
           tag_name: ha
           release_name: ha
-          body: ${{steps.description.outputs.content}}
+          body: ./all_cn_cidr.list
           draft: false
           prerelease: false
 
